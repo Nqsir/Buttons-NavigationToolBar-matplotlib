@@ -16,7 +16,7 @@ If you want to add some buttons just follow the doc given by the class Navigatio
 So you need to redefine your class as previously said (you can also see under, the pre-defined buttons available atm). In my case I wanted to remove 2 buttons ('Save' and 'Subplots' that I commented) so that gave me :
 
     class NavigationToolbar2QT(NavigationToolbar2QT):
-        # only display the buttons we need
+        # Only display the buttons we need, comment the button you d'ont want
         NavigationToolbar2QT.toolitems = (
             ('Home', 'Reset original view', 'home', 'home'),
             ('Back', 'Back to previous view', 'back', 'back'),
