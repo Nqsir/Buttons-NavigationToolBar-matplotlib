@@ -33,4 +33,4 @@ And calling the NavigationToolbar (still in my case) :
 
     figure = plt.figure()
     canvas = FigureCanvas(figure)
-    toolbar = NavigationToolbar(canvas, self)
+    toolbar = NavigationToolbar2QT(canvas, self)
