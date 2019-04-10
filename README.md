@@ -1,17 +1,9 @@
-# Buttons-NavigationToolBar-matplotlib
+# Remove / Add buttons to your NavigationToolBar
 How to add / remove buttons from the NavigationToolBar using Matplotlib 3.x
 
-Using PyQt5 and matplotlib version '3.0.2'
+Using Win10, PyQt5 and matplotlib version '3.0.2'
 
-If you want to add some buttons just follow the doc given by the class NavigationToolbar2() that is initialised in NavigationToolbar2QT() wich is imported from matplotlib.backends.backend_qt5agg :
-
-    # list of toolitems to add to the toolbar, format is:
-    # (
-    #   text, # the text of the button (often not visible to users)
-    #   tooltip_text, # the tooltip shown on hover (where possible)
-    #   image_file, # name of the image for the button (without the extension)
-    #   name_of_method, # name of the method in NavigationToolbar2 to call
-    # )
+## Remove buttons to your NavigationToolBar
 
 So you need to redefine your class as previously said (you can also see under, the pre-defined buttons available atm). In my case I wanted to remove 2 buttons ('Save' and 'Subplots' that I commented) so that gave me :
 
@@ -29,7 +21,17 @@ So you need to redefine your class as previously said (you can also see under, t
             # ('Save', 'Save the figure', 'filesave', 'save_figure'),
         )
 
-# Add_images_to_matplotlib_NavigationToolBar2QT
+## Add a button + images to your NavigationToolBar
+
+If you want to add some buttons just follow the doc given by the class NavigationToolbar2() that is initialised in NavigationToolbar2QT() wich is imported from matplotlib.backends.backend_qt5agg :
+
+    # list of toolitems to add to the toolbar, format is:
+    # (
+    #   text, # the text of the button (often not visible to users)
+    #   tooltip_text, # the tooltip shown on hover (where possible)
+    #   image_file, # name of the image for the button (without the extension)
+    #   name_of_method, # name of the method in NavigationToolbar2 to call
+    # )
 
 In my case the purpose was to add new images to the image pool and the matplotlib, in order to be able to use images I wanted in my 
 NavigationToolBar and my new button.
@@ -39,7 +41,6 @@ In that repo this is a simple override, **_BUT_** the NavigationToolBar started 
 So to add my images to the buttons I simply decided to copy my icons directly in the matplotlib directory. I would not recommend it, but here's a solution and I would still invite you to use a venv.
 
 Here's the points you need to pay attention to before :
-- I am using Win10 so that may be not that portable,
 - You need 2 icons formated that way :
   - name.png => 24x24 pixels
   - name_large.png => 48x48 pixels
