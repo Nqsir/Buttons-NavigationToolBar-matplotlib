@@ -2,8 +2,10 @@ from PyQt5.QtWidgets import QDialog, QApplication, QVBoxLayout
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT
+from shutil import copy2
 import sys
 import random
+import os
 
 
 class NavigationToolbar2QT(NavigationToolbar2QT):
@@ -18,7 +20,12 @@ class NavigationToolbar2QT(NavigationToolbar2QT):
         # ('Subplots', 'Configure subplots', 'subplots', 'configure_subplots'),
         (None, None, None, None),
         # ('Save', 'Save the figure', 'filesave', 'save_figure'),
+        ('Quit', 'Close the window', 'exit', 'close_plot'),
     )
+
+    def close_plot(self):
+        print('close_plot called')
+        pass
 
 
 class Plot(QDialog):
@@ -83,6 +90,9 @@ class Plot(QDialog):
 
 
 if __name__ == '__main__':
+    mpl_path = os.path.join(sys.path[-1], os.path.join('matplotlib', os.path.join('mpl-data', 'images')))
+    copy2('exit.png', mpl_path)
+    copy2('exit_large.png', mpl_path)
     app = QApplication(sys.argv)
     p = Plot()
     sys.exit(app.exec_())
