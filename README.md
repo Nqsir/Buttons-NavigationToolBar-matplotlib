@@ -5,7 +5,7 @@ Using Win10, PyQt5 and matplotlib version '3.0.2'
 
 ## Remove buttons to your NavigationToolBar
 
-So you need to redefine your class as previously said (you can also see under, the pre-defined buttons available atm). In my case I wanted to remove 2 buttons ('Save' and 'Subplots' that I commented) so that gave me :
+So you need to redefine the toolitems in the class NavigationToolbar2QT (you can also see under, the pre-defined buttons available atm). In that case I wanted to remove 2 buttons ('Save' and 'Subplots' that I commented) so that gave me :
 
     class NavigationToolbar2QT(NavigationToolbar2QT):
         # Only display the buttons we need, comment buttons you don't want to display
@@ -44,6 +44,27 @@ Here's the points you need to pay attention to before :
 - You need 2 icons formated that way :
   - name.png => 24x24 pixels
   - name_large.png => 48x48 pixels
+  
+
+In that case I wanted to add 1 button ('Quit') so that gave me :
+```
+class NavigationToolbar2QT(NavigationToolbar2QT):
+    # Only display the buttons we need, comment buttons you don't want to display
+    NavigationToolbar2QT.toolitems = (
+        ('Home', 'Reset original view', 'home', 'home'),
+        ('Back', 'Back to previous view', 'back', 'back'),
+        ('Forward', 'Forward to next view', 'forward', 'forward'),
+        (None, None, None, None),
+        ('Pan', 'Pan axes with left mouse, zoom with right', 'move', 'pan'),
+        ('Zoom', 'Zoom to rectangle', 'zoom_to_rect', 'zoom'),
+        # ('Subplots', 'Configure subplots', 'subplots', 'configure_subplots'),
+        (None, None, None, None),
+        # ('Save', 'Save the figure', 'filesave', 'save_figure'),
+        ('Quit', 'Close the window', 'exit', 'close_plot'),
+    )
+```
+
+And I add my images to the lib :
 
 ```
 import sys
