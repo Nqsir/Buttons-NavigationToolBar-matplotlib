@@ -36,7 +36,7 @@ If you want to add some buttons just follow the doc given by the class Navigatio
 In my case the purpose was to add new images to the image pool and the matplotlib, in order to be able to use images I wanted in my 
 NavigationToolBar and my new button.
 
-In that repo this is a simple override, **_BUT_** the NavigationToolBar started to be very complicated to be overriden (multiple inialisation, methods and instances...).
+It was till this point a simple override, **_BUT_** the NavigationToolBar started to be very complicated to be overriden (multiple inialisation, methods and instances...).
 
 So to add my images to the buttons I simply decided to copy my icons directly in the matplotlib directory. I would not recommend it, but here's a solution and I would still invite you to use a venv.
 
