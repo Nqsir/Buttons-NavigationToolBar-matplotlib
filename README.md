@@ -47,7 +47,7 @@ Here's the points you need to pay attention to before :
   
 First add your images to the matplotlib library and then plot your graph with your NavigationToolBar:
 
-In that case I wanted to add 1 button ('Quit') so I added my tuple to tool.item :
+In that case I wanted to add 1 button ('Quit') so I added my tuple to NavigationToolbar2QT.toolitems :
 ```
         ('Quit', 'Close the window', 'exit', 'close_plot'),
 ```
