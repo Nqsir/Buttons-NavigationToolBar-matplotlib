@@ -45,6 +45,8 @@ Here's the points you need to pay attention to before :
   - name.png => 24x24 pixels
   - name_large.png => 48x48 pixels
   
+First add your images to to the matplotlib library :
+
 
 In that case I wanted to add 1 button ('Quit') so that gave me :
 ```
@@ -62,19 +64,4 @@ class NavigationToolbar2QT(NavigationToolbar2QT):
         # ('Save', 'Save the figure', 'filesave', 'save_figure'),
         ('Quit', 'Close the window', 'exit', 'close_plot'),
     )
-```
-
-And I add my images to the lib :
-
-```
-import sys
-import os
-from shutil import copy2
-
-
-if __name__ == '__main__':
-    mpl_path = os.path.join(sys.path[-1], os.path.join('matplotlib', os.path.join('mpl-data', 'images')))
-    copy2('name.png', mpl_path)
-    copy2('name_large.png', mpl_path)
-
 ```
