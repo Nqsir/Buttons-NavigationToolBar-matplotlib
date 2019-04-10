@@ -28,9 +28,3 @@ So you need to redefine your class as previously said (you can also see under, t
             (None, None, None, None),
             # ('Save', 'Save the figure', 'filesave', 'save_figure'),
         )
-
-And calling the NavigationToolbar (still in my case) :
-
-    figure = plt.figure()
-    canvas = FigureCanvas(figure)
-    toolbar = NavigationToolbar2QT(canvas, self)
