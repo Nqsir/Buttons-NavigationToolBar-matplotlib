@@ -42,26 +42,14 @@ So to add my images to the buttons I simply decided to copy my icons directly in
 
 Here's the points you need to pay attention to before :
 - You need 2 icons formated that way :
-  - name.png => 24x24 pixels
-  - name_large.png => 48x48 pixels
+  - name.png (24x24 pixels)
+  - name_large.png (48x48 pixels)
   
-First add your images to to the matplotlib library :
+First add your images to the matplotlib library and then plot your graph with your NavigationToolBar:
 
-
-In that case I wanted to add 1 button ('Quit') so that gave me :
+In that case I wanted to add 1 button ('Quit') so I added my tuple to tool.item :
 ```
-class NavigationToolbar2QT(NavigationToolbar2QT):
-    # Only display the buttons we need, comment buttons you don't want to display
-    NavigationToolbar2QT.toolitems = (
-        ('Home', 'Reset original view', 'home', 'home'),
-        ('Back', 'Back to previous view', 'back', 'back'),
-        ('Forward', 'Forward to next view', 'forward', 'forward'),
-        (None, None, None, None),
-        ('Pan', 'Pan axes with left mouse, zoom with right', 'move', 'pan'),
-        ('Zoom', 'Zoom to rectangle', 'zoom_to_rect', 'zoom'),
-        # ('Subplots', 'Configure subplots', 'subplots', 'configure_subplots'),
-        (None, None, None, None),
-        # ('Save', 'Save the figure', 'filesave', 'save_figure'),
         ('Quit', 'Close the window', 'exit', 'close_plot'),
-    )
 ```
+
+Full exemple in Navigationtoolbar.py just ```py Navigationtoolbar.py```
