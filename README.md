@@ -28,3 +28,31 @@ So you need to redefine your class as previously said (you can also see under, t
             (None, None, None, None),
             # ('Save', 'Save the figure', 'filesave', 'save_figure'),
         )
+
+# Add_images_to_matplotlib_NavigationToolBar2QT
+
+In my case the purpose was to add new images to the image pool and the matplotlib, in order to be able to use images I wanted in my 
+NavigationToolBar and my new button.
+
+In that repo this is a simple override, **_BUT_** the NavigationToolBar started to be very complicated to be overriden (multiple inialisation, methods and instances...).
+
+So to add my images to the buttons I simply decided to copy my icons directly in the matplotlib directory. I would not recommend it, but here's a solution and I would still invite you to use a venv.
+
+Here's the points you need to pay attention to before :
+- I am using Win10 so that may be not that portable,
+- You need 2 icons formated that way :
+  - name.png => 24x24 pixels
+  - name_large.png => 48x48 pixels
+
+```
+import sys
+import os
+from shutil import copy2
+
+
+if __name__ == '__main__':
+    mpl_path = os.path.join(sys.path[-1], os.path.join('matplotlib', os.path.join('mpl-data', 'images')))
+    copy2('name.png', mpl_path)
+    copy2('name_large.png', mpl_path)
+
+```
