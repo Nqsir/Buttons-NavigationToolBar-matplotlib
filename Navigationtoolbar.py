@@ -1,3 +1,4 @@
+from PyQt5.QtCore import QObject, pyqtSignal
 from PyQt5.QtWidgets import QDialog, QApplication, QVBoxLayout
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -8,7 +9,18 @@ import random
 import os
 
 
+class Signal(QObject):
+    """
+    Defines only one signal when we need to emit that something happened
+    """
+    finish = pyqtSignal(int)
+
+
 class NavigationToolbar2QT(NavigationToolbar2QT):
+    def __init__(self, canvas, parent):
+        super().__init__(canvas, parent)
+        self.signal = Signal()  # Needed to fire a signal when we want to leave, e.g. calling our method close_plot
+
     # Only display the buttons we need, comment buttons you don't want to display
     NavigationToolbar2QT.toolitems = (
         ('Home', 'Reset original view', 'home', 'home'),
@@ -24,13 +36,13 @@ class NavigationToolbar2QT(NavigationToolbar2QT):
     )
 
     def close_plot(self):
-        print('close_plot called')
-        pass
+        self.signal.finish.emit(0)
 
 
 class Plot(QDialog):
     def __init__(self):
         super().__init__()
+
         # Define a window (QDialog)
         self.graph = QDialog()
 
@@ -52,13 +64,15 @@ class Plot(QDialog):
         layout.addWidget(self.graph.canvas)
         self.graph.setLayout(layout)
 
-        # Call method plot() to define any plot you wish
-        self.plot()
+        self._plot()
+
+        # Connecting signal to the closing method
+        self.graph.toolbar.signal.finish.connect(self.graph.close)
 
         # Show our window
         self.graph.show()
 
-    def plot(self):
+    def _plot(self):
         """
         Plot your graph
         """
@@ -90,11 +104,15 @@ class Plot(QDialog):
 
 
 if __name__ == '__main__':
-    mpl_path = os.path.join(sys.path[-1], os.path.join('matplotlib', os.path.join('mpl-data', 'images')))
-    copy2('exit.png', mpl_path)
-    copy2('exit_large.png', mpl_path)
+    try:
+        mpl_path = os.path.join(sys.path[-1], os.path.join('matplotlib', os.path.join('mpl-data', 'images')))
+        if not os.path.exists(mpl_path):
+            print('Path not found, trying path for venv')
+            mpl_path = os.path.join(sys.path[-3], os.path.join('matplotlib', os.path.join('mpl-data', 'images')))
+        copy2('exit.png', mpl_path)
+        copy2('exit_large.png', mpl_path)
+    except FileNotFoundError and IndexError:
+        print(f'Failed to import images to matplotlib image pool')
     app = QApplication(sys.argv)
     p = Plot()
     sys.exit(app.exec_())
-
-    
